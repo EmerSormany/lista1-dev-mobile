@@ -49,5 +49,39 @@ void maind(){
     // quantos elementos únicos existem.
     Set<int> conjunto = {1, 2, 3, 4, 5, 2, 3, 1};
     print(conjunto);
+    
+    // 11. Crie um mapa (Map) para associar nomes de frutas a seus preços e 
+    // acesse o preço de uma fruta específica.
+    Map<String, double> frutas_precos = {
+        'abacate' : 10.50,
+        'maca' : 10.39,
+        'banana' : 2.37
+    };
+ 
+    print(frutas_precos['maca']); 
+
+    // 12. Declare uma variável dinâmica e atribua a ela um valor inteiro, 
+    // depois mude para uma String.
+    
+    dynamic valorB = 10;
+    print(valorB);
+    valorB = 'texto';
+    print(valorB);
+
+    // 13. Use o operador ternário para verificar se uma idade é maior ou igual a 18
+    // e retorne "Maior de idade" ou "Menor de idade".
+    idade >= 18 ? print('Maior de idade') : print('Menor de idade0');
+
+    // 14. Utilize o operador de coalescência nula (??) para atribuir um valor 
+    // padrão a uma variável que pode ser nula.
+    String? nomeConvidado;
+    String nomeExibido = nomeConvidado ?? 'Convidado';
+    print(nomeExibido);
+
+    // 15. Crie uma variável final para armazenar o valor de PI e tente alterar seu valor após a atribuição. 
+    double pi = 3.14;
+    print(pi);
+    pi += pi;
+    print(pi);
 }
 
