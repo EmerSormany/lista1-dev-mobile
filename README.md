@@ -1,6 +1,6 @@
 # lista1-dev-mobile
 
-1.1 Tipos e Operadores
+### 1.1 Tipos e Operadores
 1. Declare uma variável inteira para armazenar a idade de uma
 pessoa e atribua o valor 28.
 2. Crie uma variável double para guardar a altura de uma pessoa
@@ -32,8 +32,7 @@ valor padrão a uma variável que pode ser nula.
 4
 15. Crie uma variável final para armazenar o valor de PI e tente
 alterar seu valor após a atribuição.
-1.2 Estruturas de Seleção e Estruturas de
-Repetição
+### 1.2 Estruturas de Seleção e Estruturas de Repetição
 16. Peça ao usuário para informar a idade e exiba "Maior de idade"
 se for 18 anos ou mais, ou "Menor de idade" caso contrário.
 17. Dada uma variável nota, use if/else para exibir "Aprovado" se a
@@ -54,7 +53,7 @@ while.
 então exiba quantos números foram digitados.
 25. Dada uma lista de nomes, use um for-in para imprimir cada
 nome em letras maiúsculas.
-1.3 Funções
+### 1.3 Funções
 26. Crie uma função chamada calcularAreaRetangulo que recebe
 dois parâmetros obrigatórios, base e altura, e retorna a área do
 retângulo.
@@ -75,7 +74,7 @@ retorna a soma de todos os elementos.
 30. Pesquise o que é uma função anônima no dart e crie uma função
 anônima atribuída a uma variável chamada saudacao que recebe
 um nome e imprime "Olá, [nome]!" quando chamada.
-1.4 Coleções
+### 1.4 Coleções
 31. Crie uma lista de inteiros chamada numeros com os valores ``.
 Adicione o número 40 ao final da lista e imprima o terceiro
 elemento (índice 2).
