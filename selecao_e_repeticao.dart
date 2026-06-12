@@ -51,7 +51,6 @@ void main() {
     }
 
     // 20. Receba três números inteiros e utilize estruturas de seleção para exibir o maior deles.
-    
     stdout.write('digite o primeir número inteiro: ');
     int numA = int.parse(stdin.readLineSync()!);
     
@@ -68,4 +67,58 @@ void main() {
     } else {
         print('terceiro numero é maior de todos');
     }
+
+    // 21. Use um loop for para imprimir os números de 10 até 1.
+    for(int i = 1; i <= 10; i++){
+        print(i);
+    }
+
+    // 22. Some e exiba todos os números pares de 1 a 100 usando um loop.
+    int x = 0;
+    for(int i = 1; i <= 100; i++){
+        if((i % 2) == 0){
+            int aux = x;
+            x = x+i;
+            print('$aux + $i = $x');
+        }
+    }
+
+    // 23. Peça um número e mostre sua tabuada de 1 a 10 usando for ou while.
+    stdout.write('digite um número para ver sua tabuada: ');
+    double tabuada = double.parse(stdin.readLineSync()!);
+    
+    int count = 1; 
+    while(count < 11){
+        print('$tabuada   somado com     $count é igual a ${tabuada + count}');
+        
+        print('$tabuada multiplicado por $count é igual a ${tabuada * count}');
+        
+        print('$tabuada   dividido por   $count é igual a ${tabuada / count}');
+        
+        print('$tabuada     subtraído    $count é igual a ${tabuada - count}');
+        count++;
+    }
+
+    // 24. Leia números do usuário até que ele digite um valor negativo, 
+    // e então exiba quantos números foram digitados.
+    int ctrl = 0;
+    String exibe = 'números digitados '; 
+    
+    do {
+        stdout.write('digite um número, se quiser sair digite um valor negativo: ');
+        ctrl = int.parse(stdin.readLineSync()!);
+        
+        exibe += '$ctrl, ';
+        
+    } while( ctrl >= 0);
+    
+    print(exibe);
+
+    // 25. Dada uma lista de nomes, use um for-in para imprimir cada nome em letras maiúsculas.
+    List<String> nomes = ['josé', 'maria', 'diego', 'honorato'];
+    
+    for(String nome in nomes){
+        print(nome.toUpperCase());
+    }
+    
 }
