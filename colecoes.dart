@@ -1,4 +1,15 @@
 import 'dart:io';
+import 'dart:collection';
+
+base class Node extends LinkedListEntry<Node> {
+    int valor;
+    
+    Node(this.valor);
+    
+    @override
+    String toString() => 'Node($valor)';
+}
+
 void main(){
     // 31. Crie uma lista de inteiros chamada numeros com os valores ``. 
     // Adicione o número 40 ao final da lista e imprima o terceiro elemento (índice 2).
@@ -72,5 +83,42 @@ void main(){
     print(fila.removeFirst());
     print(fila);
 
+
+    // 41. Use addFirst para inserir 0 no início da fila Queue fila = Queue.from()
+    // e removeLast para remover o último elemento.
+    Queue fila_1 = Queue.from(fila);
+    fila_1.addFirst('0');
+    print(fila_1.removeLast());
+    print(fila_1);
+
+    // 42. Converta a Queue fila = Queue.from() em uma lista e imprima o segundo elemento.
+    List<String> lista = fila.toList();
+    print(lista);
+
+    // 43. Defina uma classe Node que estende LinkedListEntry com um campo valor. 
+    // Crie uma LinkedList e adicione três nós com valores 10, 20, 30.
+    final lista_1 = LinkedList<Node>();
+    
+    final no_1 = Node(10);
+    final no_2 = Node(20);
+    final no_3 = Node(30);
+    
+    lista_1.add(no_1);
+    lista_1.add(no_2);
+    lista_1.add(no_3);
+    
+    print(lista_1);
+
+    // 44. Na LinkedList criada anteriormente, 
+    // remova o nó com valor 20 usando unlink() e imprima os valores restantes.
+    no_2.unlink();
+    print(lista_1);
+
+    // 45. Percorra a LinkedList usando um loop for-in e imprima cada valor multiplicado por 2.
+    for (var node in lista_1) {
+        print(node.valor * 2);
+    }
+
+    
 }
     
