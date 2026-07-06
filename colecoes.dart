@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'dart:collection';
+import 'dart:math';
 
 base class Node extends LinkedListEntry<Node> {
     int valor;
@@ -8,6 +9,163 @@ base class Node extends LinkedListEntry<Node> {
     
     @override
     String toString() => 'Node($valor)';
+}
+
+class Contador {
+    int _valor = 0;
+    
+    int get valor => _valor;
+    
+    void incrementar() {
+    _valor++;
+    }
+    
+    void resetar() {
+    _valor = 0;
+    }
+}
+
+class Livro {
+    String titulo;
+    String autor;
+    int anoPublicacao;
+    
+    Livro(this.titulo, this.autor, this.anoPublicacao);
+    
+    exibirDetalhes() {
+        return "Título: ${this.titulo}, Autor: ${this.autor}, Ano: ${this.anoPublicacao}";
+    }
+}
+
+class Aluno {
+    String nome;
+    String matricula;
+    
+    Aluno(this.nome, this.matricula);
+    
+    Aluno.semMatricula(this.nome) : matricula = 'Não informada';
+}
+
+class Produto {
+    String nome;
+    double preco;
+    
+    Produto({
+    required this.nome,
+    this.preco = 0.0,
+    });
+}
+
+class Veiculo {
+    String marca;
+    int velocidadeMaxima;
+    
+    Veiculo(this.marca, this.velocidadeMaxima);
+}
+
+class Carro extends Veiculo {
+    int quantidadePortas;
+    
+    Carro(String marca, int velocidadeMaxima, this.quantidadePortas)
+      : super(marca, velocidadeMaxima);
+}
+
+class Animal {
+    emitirSom(){
+        print('emitindo som');
+    }
+}
+
+class Gato extends Animal {
+    @override
+    void emitirSom() {
+        print('Miau!');
+    }
+}
+
+abstract class Forma {
+    double calcularArea();
+}
+
+class Quadrado extends Forma {
+    double lado;
+
+    Quadrado(this.lado);
+
+    @override
+    double calcularArea() {
+        return lado * lado;
+    }
+}
+
+class Circulo extends Forma {
+    double raio;
+
+    Circulo(this.raio);
+
+    @override
+    double calcularArea() {
+        return pi * (raio * raio);
+    }
+}
+
+abstract class Notificacao {
+    void enviar();
+}
+
+class Email extends Notificacao {
+    @override
+    void enviar() {
+        print('Email enviado!');
+    }
+}
+
+class SMS extends Notificacao {
+    @override
+    void enviar() {
+        print('SMS enviado!');
+    }
+}
+
+class ContaBancaria {
+    double _saldo = 0.0;
+    
+    double get saldo => _saldo;
+    
+    void depositar(double valor) {
+        if (valor > 0) {
+            _saldo += valor;
+            print('Depósito de ${valor} reais realizado com sucesso.');
+        } else {
+            print('Erro: O valor do depósito deve ser maior que zero.');
+        }
+    }
+    
+    void sacar(double valor) {
+        if (valor <= 0) {
+            print('Erro: O valor do saque deve ser maior que zero.');
+        } else if (valor <= _saldo) {
+            _saldo -= valor;
+            print('Saque de ${valor} reais realizado com sucesso.');
+        } else {
+            print('Erro: Saldo insuficiente para sacar ${valor} reais.');
+        }
+    }
+}
+
+class Termometro {
+    double _temperaturaC = 0.0;
+    
+    double get temperaturaC => _temperaturaC;
+    
+    void ajustarTemperatura(double novaTemp) {
+        if (novaTemp >= -50 && novaTemp <= 100) {
+            _temperaturaC = novaTemp;
+            print('Temperatura ajustada para: $_temperaturaC°C');
+        } else {
+            print('Erro: Valor $novaTemp°C está fora do intervalo permitido (-50°C a 100°C).');
+        }
+    }
 }
 
 void main(){
@@ -119,6 +277,89 @@ void main(){
         print(node.valor * 2);
     }
 
+    // 46. Crie uma classe Livro com as propriedades titulo, autor e anoPublicacao. 
+    // Adicione um método exibirDetalhes() que retorna uma string formatada como "Título: [titulo], 
+    // Autor: [autor], Ano: [ano]". Exemplo de uso: var livro = Livro('Dom Casmurro', 'Machado de Assis', 1899);
+    // print(livro.exibirDetalhes()); // Título: Dom Casmurro, Autor: Machado de Assis, Ano: 1899
+    var livro = Livro('Dom Casmurro', 'Machado de Assis', 1889);
+    print(livro.exibirDetalhes());
+
+    // 47. Crie uma classe Contador com uma propriedade privada _valor (inicializada em 0) 
+    // e um método público incrementar() que aumenta _valor em 1. Adicione um método resetar() 
+    // que define _valor para 0.
+    var cont = Contador();
+    cont.incrementar();
+    cont.incrementar();
+    print(cont.valor);
+    cont.resetar();
+    print(cont.valor);
+
+    // 48. Crie uma classe Aluno com as propriedades nome e matricula. 
+    // Implemente um construtor padrão que inicializa ambas as propriedades e um construtor nomeado Aluno. 
+    // semMatricula que define matricula como 'Não informada'. 
+    // Exemplo de uso: var aluno1 = Aluno('Ana', '20240001'); var aluno2 = Aluno.semMatricula('Bruno');
+
+    var aluno1 = Aluno('Zefa', '212035');
+    var aluno2 = Aluno.semMatricula('Zé');
     
+    print('Nome: ${aluno1.nome} Mat: ${aluno1.matricula}');
+    print('Nome: ${aluno2.nome} Mat: ${aluno2.matricula}');
+
+    // 49. Crie uma classe Produto com as propriedades nome e preco. 
+    // Use um construtor para inicializar nome como obrigatório e preco com valor padrão 0.0 se não for fornecido.
+    
+    var feijao = Produto(nome: 'feijão carioca', preco: 2.89);
+    var bolacha = Produto(nome: 'Maragoji');
+    
+    print('Nome: ${feijao.nome} preço: ${feijao.preco}');
+    print('Nome: ${bolacha.nome} preço: ${bolacha.preco}');
+
+    // 50. Crie uma classe Veiculo com as propriedades marca e velocidadeMaxima. 
+    // Em seguida, crie uma subclasse Carro que adiciona a propriedade quantidadePortas. 
+    // Exemplo de uso: var carro = Carro('Toyota', 200, 4); 7 print(carro.quantidadePortas); 
+    
+    var carro = Carro('Toyota', 200, 4);
+    print(carro.quantidadePortas);
+
+    // 51. Crie uma classe Animal com o método emitirSom(). 
+    // Derive a classe Gato que sobrescreve emitirSom() para retornar "Miau!".
+    
+    var gato = Gato();
+    gato.emitirSom();
+
+    // 52. Crie uma classe Forma com o método calcularArea(). Derive as classes Quadrado (lado) 
+    // e Circulo (raio) que implementam calcularArea() de formas diferentes. 
+    // Exemplo de uso: Forma forma1 = Quadrado(5); Forma forma2 = Circulo(3); 
+    // print(forma1.calcularArea()); 25 print(forma2.calcularArea()); // ~28.27
+    Forma forma1 = Quadrado(5);
+    Forma forma2 = Circulo(3);
+
+    print(forma1.calcularArea()); 
+    print(forma2.calcularArea().toStringAsFixed(2));
+
+    // 53. Crie uma classe Notificacao com o método enviar(). Derive Email e SMS, cada uma implementando 
+    //enviar() com mensagens específicas (ex: "Email enviado!").
+    Notificacao email = Email();
+    Notificacao sms = SMS();
+    
+    email.enviar();
+    sms.enviar();
+
+    // 54. Crie uma classe ContaBancaria com uma propriedade privada _saldo e métodos públicos depositar(valor) 
+    // e sacar(valor). O saque só é permitido se houver saldo suficiente. 
+    // Exemplo de uso: var conta = ContaBancaria(); conta.depositar(1000); 
+    // conta.sacar(500); // OK conta.sacar(600); // Erro: Saldo insuficiente
+    
+    var conta = ContaBancaria();
+    conta.depositar(1000);
+    conta.sacar(500);
+    conta.sacar(600);
+
+    // 55. Crie uma classe Termometro com uma propriedade privada _temperaturaC. 
+    // Adicione um método ajustarTemperatura(double novaTemp) que só permite valores entre -50 e 100.
+    
+    var temp = Termometro();
+    temp.ajustarTemperatura(80);
+    temp.ajustarTemperatura(180);
 }
     
