@@ -168,6 +168,32 @@ class Termometro {
     }
 }
 
+class Retangulo {
+    double _largura = 0;
+    double _altura = 0;
+    
+    double get largura => _largura;
+    double get altura => _altura;
+    
+    set largura(double novaLargura) {
+        if (novaLargura > 0) {
+          _largura = novaLargura;
+          print('OK');
+        } else {
+            print('Erro: Valor inválido');
+        }
+    }
+    
+    set altura(double novaAltura) {
+        if (novaAltura > 0) {
+          _altura = novaAltura;
+          print('OK');
+        } else {
+            print('Erro: Valor inválido');
+        }
+    }
+}
+
 void main(){
     // 31. Crie uma lista de inteiros chamada numeros com os valores ``. 
     // Adicione o número 40 ao final da lista e imprima o terceiro elemento (índice 2).
@@ -361,5 +387,183 @@ void main(){
     var temp = Termometro();
     temp.ajustarTemperatura(80);
     temp.ajustarTemperatura(180);
+
+    // 56. Crie uma classe Retangulo com propriedades privadas _largura e _altura. 
+    // Use getters para largura e altura e setters que validam valores positivos. 
+    // Exemplo de uso: var ret = Retangulo(); ret.largura = 10; // OK ret.altura = -5; // Erro: Valor inválido
+
+    var ret = Retangulo();
+    ret.largura = 10;
+    ret.altura = -5;
+
+    // 57. Crie uma classe Usuario com uma propriedade privada _email. Use um setter para validar se 
+    // o email contém @ antes de atribuílo.
+
+    var user = Usuario();
+    user.email = 'emeil@teste.com';
+    user.email = 'emailteste.com';
+
+    // 58. Crie uma interface Autenticavel com o método bool autenticar(String senha). 
+    // Implemente-a na classe Usuario para verificar se a senha é "1234". 
+    // Exemplo de uso: var user = Usuario(); 8 print(user.autenticar('1234')); // true
+
+    var user = Usuario();
+    print(user.autenticar('1234'));
+
+    // 59. Crie uma interface Calculavel com o método double calcular(double a, double b). 
+    // Implemente-a em Soma e Subtracao.
+
+    var soma = Soma();
+    print(soma.calcular(1.5, 15));
+    
+    var sub = Subtracao();
+    print(sub.calcular(1.5, 15));
+
+    // 60. Crie uma classe abstrata Dispositivo com o método abstrato void ligar(). 
+    // Derive a classe Celular que implementa ligar() exibindo "Celular ligado!". 
+    // Exemplo de uso: Dispositivo dispositivo = Celular(); dispositivo.ligar(); // Celular ligado!
+
+    Dispositivo dispositivo = Celular();
+    dispositivo.ligar();
+
+    // 61. Crie uma classe abstrata FormaGeometrica com o método abstrato double calcularArea(). 
+    // Derive Triangulo e Retangulo com implementações específicas.
+
+    FormaGeometrica triangulo = Triangulo();
+    print(triangulo.calcularArea(10, 5));
+    FormaGeometrica retangulo = Retangulo1();
+    print(retangulo.calcularArea(10, 5));
+
+    // 62. Um programa realiza a divisão de dois números inteiros, mas o divisor pode ser zero. 
+    // Modifique o código para que o usuário não veja uma mensagem de erro do sistema caso isso aconteça. 
+    // void main() { int a = 10; int b = 0; print(a ~/ b); }
+    
+    int a = 10; 
+    int b = 0; 
+    try{
+        print(a ~/ b); 
+    } catch (e) {
+        print('O denominador não pode ser 0');
+    }
+    
+    // 63. Um texto digitado pelo usuário deve ser convertido para inteiro, mas pode conter letras ou símbolos. 
+    // Garanta que, se a conversão falhar, o programa não seja interrompido abruptamente. 
+    // void main() { String texto = "abc"; int numero = int.parse(texto); }
+    
+    String texto = "abc"; 
+    
+    try{
+        int numero = int.parse(texto);
+    } catch (e) {
+        print('Valor digitado não é um número');
+    }
+
+    // 64. Dada uma lista com três elementos, o código tenta acessar o elemento de índice 5. 
+    // Implemente o tratamento necessário para que o acesso inválido não encerre o programa. 
+    // void main() { List lista = [1, 2, 3]; print(lista[5]); } 9
+    
+    List lista = [1, 2, 3]; 
+    
+    try{
+       print(lista[5]); 
+    } catch (e) {
+        print('posição não existe');
+    }
+
+    // 65. Um sistema de cadastro exige que o e-mail digitado contenha o caractere "@".
+    // Caso contrário, uma exceção personalizada deve ser lançada e tratada. 
+    // void main() { String email = "usuario.example.com"; // Seu código aqui }
+
+    String email = "usuario.example.com";
+    
+    try{
+        if (!email.contains('@')) {
+            throw ArgumentError('O email digitado está incorreto!');
+        }
+    } catch (e){
+        print(e);
+    }
+
+    // 66. Uma função recebe uma string, converte para inteiro e usa esse valor como índice de uma lista. 
+    // Trate as possíveis exceções de conversão e de acesso fora do intervalo. 
+    // void processarEntrada(String entrada) { int numero = int.parse(entrada); 
+    // List lista = [10, 20, 30]; print(lista[numero]); }
+    
+    void processarEntrada(String entrada) { 
+        try{
+            int numero = int.parse(entrada);
+            List lista = [10, 20, 30]; 
+            print(lista[numero]); 
+        } catch (e){
+            print('entrada inválida, digita um número de 0 a 2');
+        }
+    }
+    
+    processarEntrada('a');
+    processarEntrada('a');
+}
+
+abstract class FormaGeometrica {
+    double calcularArea(double base, double altura);
+}
+
+class Triangulo implements FormaGeometrica{
+    @override
+    double calcularArea(base, altura) => (base * altura) / 2;
+}
+
+class Retangulo1 implements FormaGeometrica{
+    @override
+    double calcularArea(largura, altura) => largura * altura;
+}
+
+abstract class Dispositivo {
+    void ligar();
+}
+
+class Celular implements Dispositivo{
+    @override
+    void ligar() => print('Celular Ligado!');
+}
+
+interface class Calculavel {
+    double calcular(double a, double b) => 0.0;
+}
+
+class Soma implements Calculavel{
+    @override
+    double calcular(double a, double b) => a + b;
+}
+
+class Subtracao implements Calculavel{
+    @override
+    double calcular(double a, double b) => a - b;
+}
+
+interface class Autenticavel {
+    bool autenticar(String senha) {return true;}
+}
+
+class Usuario implements Autenticavel{
+    @override
+    bool autenticar(String senha){
+        if(senha == '1234') {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
     
+class Usuario {
+    String _email = '';
+    
+    set email(String novoEmail) {
+        if (novoEmail.contains('@')) {
+            _email = novoEmail;
+            print('OK');
+        } else {
+            print('Erro: Valor inválido');
+        }
+    }
+}
